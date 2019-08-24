@@ -106,4 +106,8 @@ public class JanelaPrincipal extends JFrame {
         new JanelaBuscaProduto();
     }
 
+    public void buscarPedidos() throws SQLException {
+        new JanelaBuscarPedidos();
+    }
+
 }

@@ -54,6 +54,14 @@ public class BarradeMenu{
 
 
         // Opcoes Pedidos
+        // Buscar Pedidos
+        JMenuItem menuBuscarPedido = new JMenuItem("Buscar Pedidos");
+        menuBuscarPedido.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                chamaMetodo(e, "buscarPedidos");
+            }
+        });
         //Adicionar Pedido
         JMenuItem menuAdicionarPedido = new JMenuItem("Adicionar Pedido");
         menuAdicionarPedido.addActionListener(new ActionListener() {
@@ -122,6 +130,7 @@ public class BarradeMenu{
         menuCliente.add(menuEditarCliente);
         // Adiciona os itens criados no Menu Pedidos
         menuPedido.add(menuAdicionarPedido);
+        menuPedido.add(menuBuscarPedido);
         menuPedido.add(menuApagarPedido);
         // Adiciona os itens criados no Menu Produtos
         menuProduto.add(menuAdicionarProduto);

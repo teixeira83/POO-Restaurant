@@ -239,6 +239,8 @@ public class TelaAlterarCliente extends JFrame {
 
                 try {
                     new DMEndereco().alterarEndereco(endereco);
+                    JOptionPane.showMessageDialog(null, "O cliente foi alterado com sucesso.", "Finalizado", JOptionPane.INFORMATION_MESSAGE);
+                    dispose();
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }

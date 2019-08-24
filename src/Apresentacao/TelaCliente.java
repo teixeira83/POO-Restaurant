@@ -277,6 +277,8 @@ public class TelaCliente extends JFrame {
 
                 try {
                     new DMCliente().inserirCliente(c);
+                    JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso.", "Finalizado!", JOptionPane.INFORMATION_MESSAGE);
+                    dispose();
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }

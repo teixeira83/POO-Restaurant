@@ -1,6 +1,7 @@
 package Persistencia;
 
 import Modelo.Pedido;
+import Modelo.Produto;
 
 import java.sql.*;
 import java.util.List;
@@ -39,5 +40,40 @@ public class DMPedido extends DMGeral{
         }
     }
 
+
+    public Pedido[] consultar(String id) throws SQLException {
+
+        String editSelect;
+        if( id.equals("")){
+            editSelect = "> 0";
+        }else{
+            editSelect = "= ?";
+        }
+        Connection con = DMGeral.getConnection();
+        String sql = "SELECT * FROM pedido WHERE id " + editSelect;
+
+        PreparedStatement stmt = con.prepareStatement(sql);
+        if( id.equals("")){
+
+        }else{
+            stmt.setString(1, id);
+        }
+        ResultSet r = stmt.executeQuery();
+        Pedido[] pedidos = new Pedido[getReturnLength(r)];
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next() == true) {
+            int i = 0;
+            pedidos[0] = new Pedido(rs.getInt("id"),rs.getDouble("valor_total"));
+            i++;
+            while (rs.next()) {
+                pedidos[i] = new Pedido(rs.getInt("id"),rs.getDouble("valor_total"));
+                i++;
+            }
+        } else {
+            System.out.println("Os Pedidos não foram encontrados no Banco de Dados.");
+        }
+        return pedidos;
+    }
 
 }
