@@ -42,4 +42,20 @@ public class DMTelefone extends DMGeral {
         }
         return tel;
     }
+
+    public void alterarTelefone(Telefone telefone) throws SQLException {
+
+        Connection con = DMGeral.getConnection();
+        String sql = "UPDATE telefone SET numero = ? , " +
+                "ddd = ? ," +
+                "operadora = ?" +
+                "WHERE( id_telefone = ? )";
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setString(1, telefone.getNum());
+        stmt.setString(2, telefone.getDdd());
+        stmt.setString(3, telefone.getOperadora());
+        stmt.setInt(4, telefone.getId_telefone());
+        stmt.executeUpdate();
+    }
+
 }

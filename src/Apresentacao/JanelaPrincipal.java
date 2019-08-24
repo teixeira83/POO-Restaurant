@@ -4,10 +4,7 @@ import Modelo.Cliente;
 import Modelo.Endereco;
 import Modelo.Imagem;
 import Modelo.Telefone;
-import Persistencia.DMCliente;
-import Persistencia.DMEndereco;
-import Persistencia.DMGeral;
-import Persistencia.DMTelefone;
+import Persistencia.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -74,11 +71,17 @@ public class JanelaPrincipal extends JFrame {
     }
 
     public void cadastrarProduto(){
-        JOptionPane.showMessageDialog(null,"CADASTRAR");
+        new JanelaCadastrarProduto();
     }
 
-    public void apagarProduto(){
-        JOptionPane.showMessageDialog(null,"REMOVER");
+    public void apagarProduto() throws SQLException {
+        String id = JOptionPane.showInputDialog("digite o id");
+        try{
+        new DMProduto().apagarProduto(id);
+            JOptionPane.showMessageDialog(null, "Produto deletado com sucesso.","DELETADO!", JOptionPane.ERROR_MESSAGE);
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
     }
 
     public void adicionarFuncionario(){
@@ -93,6 +96,8 @@ public class JanelaPrincipal extends JFrame {
         JOptionPane.showMessageDialog(null,"REMOVER");
     }
 
-
+    public void buscarProduto() throws SQLException {
+        new JanelaBuscaProduto();
+    }
 
 }

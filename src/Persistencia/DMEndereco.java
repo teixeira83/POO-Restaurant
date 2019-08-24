@@ -55,7 +55,27 @@ public class DMEndereco extends DMGeral{
     }
 
 
-    public void alterarEndereco(Endereco endereco){
-        
+    public void alterarEndereco(Endereco endereco) throws SQLException {
+        Connection con = DMGeral.getConnection();
+        String sql = "UPDATE endereco SET rua = ? , " +
+                     "bairro = ? ," +
+                     "cep = ? ," +
+                     "numero = ? ," +
+                     "complemento = ? ," +
+                     "cidade = ? ," +
+                     "estado = ? " +
+                    "WHERE( id_endereco = ? )";
+
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setString(1, endereco.getLogradouro());
+        stmt.setString(2, endereco.getBairro());
+        stmt.setString(3, endereco.getCep());
+        stmt.setString(4, endereco.getNum());
+        stmt.setString(5, endereco.getComplemento());
+        stmt.setString(6, endereco.getCidade());
+        stmt.setString(7, endereco.getEstado());
+        stmt.setInt(8, endereco.getId_endereco());
+
+        stmt.executeUpdate();
     }
 }

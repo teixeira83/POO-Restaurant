@@ -80,8 +80,16 @@ public class BarradeMenu{
                 chamaMetodo(e, "cadastrarProduto");
             }
         });
-        //Remover Pedido
-        JMenuItem menuApagarProduto = new JMenuItem("Apagar Pedido");
+        //BuscarProdutos
+        JMenuItem menuBuscarProduto = new JMenuItem("Buscar Produto");
+        menuBuscarProduto.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                chamaMetodo(e, "buscarProduto");
+            }
+        });
+        //Remover Produto
+        JMenuItem menuApagarProduto = new JMenuItem("Apagar Produto");
         menuApagarProduto.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 chamaMetodo(e,"apagarProduto");
@@ -124,6 +132,7 @@ public class BarradeMenu{
         menuPedido.add(menuApagarPedido);
         // Adiciona os itens criados no Menu Produtos
         menuProduto.add(menuAdicionarProduto);
+        menuProduto.add(menuBuscarProduto);
         menuProduto.add(menuApagarProduto);
         // Adiciona os itens criados no Menu Funcionário
         menuFuncionario.add(menuAdicionarFuncionario);

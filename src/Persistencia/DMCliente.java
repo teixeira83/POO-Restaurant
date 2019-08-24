@@ -123,5 +123,17 @@ public class DMCliente extends DMGeral {
         return clientes;
     }
 
+    public void alterarCliente(Cliente cliente) throws SQLException {
+        Connection con = DMGeral.getConnection();
+        String sql = "UPDATE cliente SET cpf = ? , " +
+                "nome = ? " +
+                "WHERE( id_cliente = ? )";
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setString(1, cliente.getCpf());
+        stmt.setString(2, cliente.getNome());
+        stmt.setInt(3, cliente.getIdCliente());
+        stmt.executeUpdate();
+    }
+
 
 }

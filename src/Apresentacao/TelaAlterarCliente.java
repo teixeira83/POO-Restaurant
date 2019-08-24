@@ -3,7 +3,6 @@ package Apresentacao;
 import Modelo.*;
 import Persistencia.DMCliente;
 import Persistencia.DMEndereco;
-import Persistencia.DMGeral;
 import Persistencia.DMTelefone;
 
 import java.awt.*;
@@ -18,9 +17,7 @@ public class TelaAlterarCliente extends JFrame {
 
     private JLabel lDados, lEndereco, lContato, lNome, lCpf, lRua, lNumero, lComplemento, lBairro, lCidade, lCep, lEstado, lDdd, lTel, lOperadora, lBLimpar, lBSalvar, lCliente, lAdress, lIconeContato;
     private JTextField tNome, tCpf, tRua, tNumero, tComplemento, tBairro, tCidade, tCep, tEstado, tDdd, tTel, tOperadora;
-    private JButton bSalvar, bLimpar;
-    //variaveis locais para armazenar o que for digitado
-    String cpf, nome, rua, numero, complemento, bairro, cidade, cep, estado, ddd, tel, operadora;
+    private JButton bSalvar;
 
     Cliente cliente;
     Endereco endereco;
@@ -208,30 +205,15 @@ public class TelaAlterarCliente extends JFrame {
         ImageIcon iconSalvar = new ImageIcon(save.montarCaminho("save_icon.png"));
         bSalvar = new JButton(iconSalvar);
         bSalvar.setSize(55, 55);
-        bSalvar.setLocation(150, 350);
+        bSalvar.setLocation(350, 350);
         bSalvar.setForeground(Color.white);
         bSalvar.addMouseListener(oC);
         this.add(bSalvar);
 
-        lBSalvar = new JLabel("Salvar");
+        lBSalvar = new JLabel("Alterar");
         lBSalvar.setSize(250, 30);
-        lBSalvar.setLocation(155, 400);
+        lBSalvar.setLocation(355, 400);
         this.add(lBSalvar);
-
-
-        Imagem trash = new Imagem();
-        ImageIcon iconTrash = new ImageIcon(trash.montarCaminho("trash_icon.png"));
-        bLimpar = new JButton(iconTrash);
-        bLimpar.setSize(55, 55);
-        bLimpar.setLocation(500, 350);
-        bLimpar.setForeground(Color.white);
-        bLimpar.addMouseListener(oC);
-        this.add(bLimpar);
-
-        lBLimpar = new JLabel("Limpar");
-        lBLimpar.setSize(250, 30);
-        lBLimpar.setLocation(505, 400);
-        this.add(lBLimpar);
 
         this.setSize(800, 470);
         this.setTitle("Cliente");
@@ -250,37 +232,32 @@ public class TelaAlterarCliente extends JFrame {
                 endereco.setLogradouro(tRua.getText());
                 endereco.setNum(tNumero.getText());
                 endereco.setComplemento(tComplemento.getText());
-                endereco.setBairro(bairro = tBairro.getText());
+                endereco.setBairro(tBairro.getText());
                 endereco.setCep(tCep.getText());
                 endereco.setCidade(tCidade.getText());
                 endereco.setEstado(tEstado.getText());
 
                 try {
-                    idEndereco = new DMEndereco().incluirEndereco(end);
+                    new DMEndereco().alterarEndereco(endereco);
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
 
-                ddd = tDdd.getText();
-                tel = tTel.getText();
-                operadora = tOperadora.getText();
-
-                Telefone telefone = new Telefone(0, ddd, tel, operadora);
-
-                int idTelefone = 0 ;
+                telefone.setDdd(tDdd.getText());
+                telefone.setNum(tTel.getText());
+                telefone.setOperadora(tOperadora.getText());
 
                 try {
-                    idTelefone = new DMTelefone().inserirTelefone(telefone);
+                    new DMTelefone().alterarTelefone(telefone);
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
 
-                cpf = tCpf.getText();
-                nome = tNome.getText();
-                Cliente c = new Cliente(0,nome, cpf, idTelefone, idEndereco);
+                cliente.setCpf(tCpf.getText());
+                cliente.setNome(tNome.getText());
 
                 try {
-                    new DMCliente().inserirCliente(c);
+                    new DMCliente().alterarCliente(cliente);
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
