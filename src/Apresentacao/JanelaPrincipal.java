@@ -62,8 +62,8 @@ public class JanelaPrincipal extends JFrame {
 
     }
 
-    public void cadastrarPedido(){
-        JOptionPane.showMessageDialog(null,"CADASTRAR");
+    public void cadastrarPedido() throws SQLException {
+        new JanelaPedidos();
     }
 
     public void apagarPedido(){

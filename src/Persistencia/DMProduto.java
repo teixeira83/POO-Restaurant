@@ -52,4 +52,17 @@ public class DMProduto extends DMGeral {
         }
         return produtos;
     }
+
+    public int consultarIdProduto(String nome) throws SQLException {
+        Connection con = DMGeral.getConnection();
+
+        String sql = "SELECT * FROM produto WHERE nome like ?";
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setString(1,  nome );
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next() == true) {
+            return rs.getInt("id_produto");
+        }
+        return 0;
+    }
 }

@@ -12,5 +12,6 @@ public class Restaurante
         //new TelaBuscaCliente();
         //new BuscaCliente();
         //new JanelaCadastrarProduto();
+        //new JanelaPedidos();
     }
 }
