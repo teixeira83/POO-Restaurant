@@ -78,7 +78,7 @@ public class Login extends JFrame{
         public void mouseClicked(MouseEvent mouseEvent) {
             login = tLogin.getText();
             password = tPassword.getText();
-            Funcionario func = new Funcionario("",login,password);
+            Funcionario func = new Funcionario(login,password);
             try {
                 int k = new DMLogin().realizarLogin(func);
                 if( k == 0 ){

@@ -106,13 +106,6 @@ public class BarradeMenu{
                 chamaMetodo(e, "adicionarFuncionario");
             }
         });
-        //Editar Funcionario
-        JMenuItem menuEditarFuncionario = new JMenuItem("Editar Funcionário");
-        menuEditarFuncionario.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                chamaMetodo(e,"editarFuncionario");
-            }
-        });
         //Apagar Funcionario
         JMenuItem menuApagarFuncionario = new JMenuItem("Apagar Funcionário");
         menuApagarFuncionario.addActionListener(new ActionListener() {
@@ -136,7 +129,6 @@ public class BarradeMenu{
         menuProduto.add(menuApagarProduto);
         // Adiciona os itens criados no Menu Funcionário
         menuFuncionario.add(menuAdicionarFuncionario);
-        menuFuncionario.add(menuEditarFuncionario);
         menuFuncionario.add(menuApagarFuncionario);
 
 

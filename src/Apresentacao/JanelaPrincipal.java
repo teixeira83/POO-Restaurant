@@ -85,7 +85,7 @@ public class JanelaPrincipal extends JFrame {
     }
 
     public void adicionarFuncionario(){
-        JOptionPane.showMessageDialog(null,"CADASTRAR");
+        new JanelaAdicionarFuncionario();
     }
 
     public void editarFuncionario(){
@@ -93,7 +93,13 @@ public class JanelaPrincipal extends JFrame {
     }
 
     public void apagarFuncionario(){
-        JOptionPane.showMessageDialog(null,"REMOVER");
+        String id = JOptionPane.showInputDialog("digite o id");
+        try{
+            new DMFuncionario().apagarFuncionario(id);
+            JOptionPane.showMessageDialog(null, "Funcionario deletado com sucesso.","DELETADO!", JOptionPane.ERROR_MESSAGE);
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
     }
 
     public void buscarProduto() throws SQLException {

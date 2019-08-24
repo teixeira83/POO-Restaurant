@@ -17,7 +17,7 @@ public class DMLogin extends DMGeral {
 
         String sql = "SELECT * FROM funcionario WHERE login like ?";
         PreparedStatement stmt = con.prepareStatement(sql);
-        stmt.setString(1, f.login);
+        stmt.setString(1, f.getLogin());
 
         ResultSet rs = stmt.executeQuery();
 
@@ -26,7 +26,7 @@ public class DMLogin extends DMGeral {
             String login = rs.getString("login");
             String password = rs.getString("senha");
 
-            if (login.equals(f.login) && password.equals(f.password)) {
+            if (login.equals(f.getLogin()) && password.equals(f.getPassword())) {
                 new JanelaPrincipal();
             } else {
                 JOptionPane.showMessageDialog(null, "Login ou senha incorretos.");
